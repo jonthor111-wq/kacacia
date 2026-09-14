@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#123153">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Fire Detector">
+<title>Fire Detector Inspection</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+ <div class="topline"><div class="brand">FIRE DETECTOR INSPECTION</div><span id="net" class="net">ONLINE</span></div>
+ <div class="subtitle">월간 Sampling 점검 · Offline PWA</div>
+</header>
+<main>
+ <section class="panel"><div id="months" class="months"></div></section>
+
+ <section class="panel hero">
+  <div class="hero-top">
+   <div><div id="monthTitle" class="hero-title"></div><div class="hero-sub">월간 Fire Detector / Push Button Sampling</div></div>
+   <div class="bigremain"><strong id="remain">0</strong><span>남은 항목</span></div>
+  </div>
+  <div class="progress"><i id="bar"></i></div>
+  <div class="progressline"><span>점검 진행률</span><span id="pct">0%</span></div>
+  <div class="quickstats">
+   <div class="qstat total"><b id="total">0</b><span>전체</span></div>
+   <div class="qstat ok"><b id="ok">0</b><span>OK</span></div>
+   <div class="qstat ng"><b id="ng">0</b><span>NG</span></div>
+  </div>
+ </section>
+
+ <section class="panel meta">
+  <div class="field"><label>INSPECTED BY</label><input id="inspector" placeholder="점검자 이름"></div>
+  <div class="field"><label>INSPECTED DATE</label><input id="date" type="date"></div>
+ </section>
+
+ <section class="panel filters">
+  <button class="filter active" data-filter="ALL" onclick="setFilter('ALL')">전체</button>
+  <button class="filter" data-filter="PENDING" onclick="setFilter('PENDING')">미점검</button>
+  <button class="filter" data-filter="NG" onclick="setFilter('NG')">NG</button>
+  <input id="search" class="search" placeholder="위치 / Address 검색">
+ </section>
+
+ <section id="list"></section>
+</main>
+
+<div class="bottom"><div class="inner">
+ <button class="btn warn" onclick="nextPending()">다음 미점검</button>
+ <button class="btn primary" onclick="shareCSV(false)">이번 달 내보내기</button>
+ <button class="btn secondary" onclick="openMore()">더보기</button>
+</div></div>
+
+<div id="overlay" class="overlay" onclick="if(event.target===this)closeMore()"><div class="sheet">
+ <h2>데이터 관리</h2>
+ <button class="btn primary" onclick="shareCSV(true)">1~12월 전체 내보내기</button>
+ <button class="btn secondary" onclick="backup()">백업 데이터 복사</button>
+ <button class="btn secondary" onclick="restore()">백업 데이터 복원</button>
+ <button class="btn warn" onclick="resetMonth()">현재 월 기록 초기화</button>
+ <button class="btn secondary" onclick="closeMore()">닫기</button>
+ <p class="note">설치 후 인터넷 없이 사용 가능합니다. 기록은 iPhone 내부 앱 저장공간에 저장됩니다. 중요한 기록은 월별 CSV 또는 백업으로 별도 보관하세요.</p>
+</div></div>
+<script src="app.js"></script>
+</body></html>
