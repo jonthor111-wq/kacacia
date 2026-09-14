@@ -1,4 +1,4 @@
-const CACHE = 'fire-detector-v13';
+const CACHE = 'fire-detector-v14';
 const ASSETS = ['./', './index.html'];
 
 self.addEventListener('install', function(event) {
